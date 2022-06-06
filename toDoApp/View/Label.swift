@@ -18,7 +18,7 @@ struct Label {
     }()
     public let descriptionLabel : UILabel = {
        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 8)
+        label.font = .boldSystemFont(ofSize: 12)
         label.textColor = UIColor().setWhite2
         return label
     }()

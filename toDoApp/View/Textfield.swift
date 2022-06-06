@@ -13,7 +13,11 @@ struct TextField {
        let textfield = UITextField()
         textfield.backgroundColor = UIColor().setPink2
         textfield.textColor = UIColor().setWhite1
-        textfield.textAlignment = .left
+        textfield.textAlignment = .center
+        textfield.font = .boldSystemFont(ofSize: 18)
+        textfield.layer.borderWidth = 3
+        textfield.layer.cornerRadius = 5
+        textfield.layer.borderColor = UIColor().setGold.cgColor
         return textfield
     }()
     
