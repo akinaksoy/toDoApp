@@ -81,11 +81,28 @@
                     <navigationItem key="navigationItem" id="41D-R6-1KO"/>
                     <connections>
                         <outlet property="toDoTableView" destination="0aO-0c-Uf4" id="urE-yq-Ob1"/>
+                        <segue destination="1OR-sq-z45" kind="show" identifier="goToCreateScenePage" id="TYV-L2-onO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="995.65217391304361" y="308.70535714285711"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ZWe-aG-tQi">
+            <objects>
+                <viewController id="1OR-sq-z45" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="laP-yd-lqk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="TbH-nJ-epT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Mrl-po-nih"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oD6-i5-QQV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1894.2028985507247" y="308.70535714285711"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Wqa-h5-wUW">

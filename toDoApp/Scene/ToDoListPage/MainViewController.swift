@@ -17,13 +17,15 @@ class ViewController: UIViewController {
         toDoTableView.dataSource = self
         
         UINavigationBar.appearance().barTintColor = .green
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus" ), style: .done, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus" ), style: .done, target: self, action: #selector(goToCreateScenePage))
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         
     }
 
-    
+    @objc func goToCreateScenePage(){
+        performSegue(withIdentifier: "goToCreateScenePage", sender: nil)
+    }
     
 
 }
