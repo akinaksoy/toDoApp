@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,7 +20,9 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0aO-0c-Uf4">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="purple-2"/>
+                                <color key="separatorColor" name="gold"/>
+                                <color key="sectionIndexBackgroundColor" name="white-2"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="toDoCell" rowHeight="140" id="buY-j8-ymb" customClass="ToDoTableViewCell" customModule="toDoApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="140"/>
@@ -28,20 +31,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TimeLabel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ez-Qa-H1I">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TimeLabel" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ez-Qa-H1I">
                                                     <rect key="frame" x="0.0" y="7" width="414" height="30"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="gold"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EeA-bj-xDs">
                                                     <rect key="frame" x="62" y="52" width="52" height="26.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="white-1"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" catalog="system" highlightedImage="square" translatesAutoresizingMaskIntoConstraints="NO" id="9Dg-iR-oXQ">
                                                     <rect key="frame" x="20" y="48" width="35" height="32.5"/>
+                                                    <color key="tintColor" name="pink-1"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="QeA-Nv-gdC"/>
                                                         <constraint firstAttribute="width" constant="35" id="iVC-N2-9tK"/>
@@ -59,6 +63,7 @@
                                                 <constraint firstItem="7Ez-Qa-H1I" firstAttribute="leading" secondItem="9Iy-tM-eaA" secondAttribute="leading" id="xgx-lB-OlF"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="pink-2"/>
                                         <connections>
                                             <outlet property="TimeLabel" destination="7Ez-Qa-H1I" id="0IL-ZS-YYP"/>
                                             <outlet property="titleLabel" destination="EeA-bj-xDs" id="qEp-sQ-sbs"/>
@@ -70,7 +75,6 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0aO-0c-Uf4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="CPh-Fv-qwV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0aO-0c-Uf4" secondAttribute="trailing" id="Qdl-cn-VGK"/>
@@ -125,6 +129,24 @@
     </scenes>
     <resources>
         <image name="square" catalog="system" width="128" height="114"/>
+        <namedColor name="gold">
+            <color red="0.94199997186660767" green="0.6470000147819519" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="pink-1">
+            <color red="0.97287768129999996" green="0.034833334389999998" blue="0.79943448309999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="pink-2">
+            <color red="0.66218900680000004" green="0.065940469500000001" blue="0.4796975255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="purple-2">
+            <color red="0.18667906519999999" green="0.022166667510000002" blue="0.29031085969999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white-1">
+            <color red="0.94559401269999999" green="0.93188983199999997" blue="0.91469925640000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white-2">
+            <color red="0.90100002288818359" green="0.83499997854232788" blue="0.72100001573562622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

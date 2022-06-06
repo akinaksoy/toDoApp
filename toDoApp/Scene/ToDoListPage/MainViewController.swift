@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         toDoTableView.delegate = self
         toDoTableView.dataSource = self
-        
+        view.backgroundColor = UIColor().setPurple1
         UINavigationBar.appearance().barTintColor = .green
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus" ), style: .done, target: self, action: #selector(goToCreateScenePage))
         self.navigationController?.setNavigationBarHidden(false, animated: true)

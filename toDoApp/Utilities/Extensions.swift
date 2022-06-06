@@ -44,5 +44,19 @@ extension UIColor {
             return .white
         }
     }
+    var setWhite2 : UIColor {
+        if let color = UIColor(named: "white-2") {
+            return color
+        }else{
+            return .white
+        }
+    }
+    var setGold : UIColor {
+        if let color = UIColor(named: "gold") {
+            return color
+        }else{
+            return .white
+        }
+    }
 }
 
