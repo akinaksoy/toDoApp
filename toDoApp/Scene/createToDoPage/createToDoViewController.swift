@@ -18,6 +18,7 @@ class createToDoViewController: UIViewController {
     let descriptionArea = UIView()
     let descriptionTextfield = TextField.init().textfield
     let descriptionHeaderLabel = Label.init().descriptionLabel
+    let saveButton = Button.init().saveButton
     override func viewDidLoad() {
         super.viewDidLoad()
         makeDesign()
@@ -37,6 +38,7 @@ class createToDoViewController: UIViewController {
         view.addSubview(descriptionArea)
         view.addSubview(descriptionTextfield)
         view.addSubview(descriptionHeaderLabel)
+        view.addSubview(saveButton)
         makeConstraints()
     }
     
@@ -89,6 +91,12 @@ class createToDoViewController: UIViewController {
         descriptionHeaderLabel.snp.makeConstraints { make in
             make.bottom.equalTo(descriptionTextfield.snp_topMargin).offset(-8)
             make.left.equalTo(descriptionTextfield.snp_leftMargin).offset(8)
+        }
+        saveButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-20)
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalTo(50)
         }
     }
 }
