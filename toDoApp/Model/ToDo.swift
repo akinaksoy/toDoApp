@@ -11,4 +11,5 @@ struct ToDo : Codable{
     var title : String = ""
     var description : String = ""
     var date = Date()
+    var checkStatus = false
 }

@@ -8,8 +8,6 @@
 import UIKit
 import SnapKit
 class createToDoViewController: UIViewController {
-    var toDo = ToDo()
-    var toDoList = toDoManager.shared.fetchData()
     let titleArea = UIView()
     let titleHeaderLabel = Label.init().descriptionLabel
     let titleTextfield = TextField.init().textfield
@@ -20,14 +18,13 @@ class createToDoViewController: UIViewController {
     let descriptionTextfield = TextField.init().textfield
     let descriptionHeaderLabel = Label.init().descriptionLabel
     let saveButton = Button.init().saveButton
+    
     @objc func clickedOnSaveButton(){
         guard let titleText = titleTextfield.text else { return }
-        toDo.title = titleText
         guard let descriptionText = descriptionTextfield.text else {return}
-        toDo.description = descriptionText
-        toDoList.append(toDo)
-        toDoManager.shared.save(toDoItem: toDoList)
-    }
+        let dateValue = datePicker.date
+        createToDoViewModel.shared.saveDataToStorage(title: titleText, description: descriptionText, date: dateValue )
+     }
     override func viewDidLoad() {
         super.viewDidLoad()
         makeDesign()

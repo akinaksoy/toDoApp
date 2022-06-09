@@ -20,6 +20,4 @@ struct toDoManager {
         let data = toDoItem.map { try? JSONEncoder().encode($0) }
             UserDefaults.standard.set(data, forKey: Key)
     }
-    
-    
 }
