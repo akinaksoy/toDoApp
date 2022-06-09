@@ -93,9 +93,9 @@ class createToDoViewController: UIViewController {
             make.left.equalTo(descriptionTextfield.snp_leftMargin).offset(8)
         }
         saveButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview()
+            make.width.equalToSuperview().offset(-20)
             make.height.equalTo(50)
         }
     }
