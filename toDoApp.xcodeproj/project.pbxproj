@@ -15,6 +15,7 @@
 		1F9CF99F284E934E004D9354 /* Textfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9CF99E284E934E004D9354 /* Textfield.swift */; };
 		1F9CF9A1284E9372004D9354 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9CF9A0284E9372004D9354 /* Button.swift */; };
 		1F9CF9A4284E94B1004D9354 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9CF9A3284E94B1004D9354 /* Extensions.swift */; };
+		1FCF76C528527FEE009B696E /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF76C428527FEE009B696E /* ToDo.swift */; };
 		1FE42907284D3E80008343B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE42906284D3E80008343B8 /* AppDelegate.swift */; };
 		1FE42909284D3E80008343B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE42908284D3E80008343B8 /* SceneDelegate.swift */; };
 		1FE4290B284D3E80008343B8 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE4290A284D3E80008343B8 /* ToDoListViewController.swift */; };
@@ -30,6 +31,7 @@
 		1F9CF99E284E934E004D9354 /* Textfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textfield.swift; sourceTree = "<group>"; };
 		1F9CF9A0284E9372004D9354 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		1F9CF9A3284E94B1004D9354 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1FCF76C428527FEE009B696E /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
 		1FE42903284D3E80008343B8 /* toDoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = toDoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE42906284D3E80008343B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FE42908284D3E80008343B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		1FCF76C328527FE1009B696E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1FCF76C428527FEE009B696E /* ToDo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1FE428FA284D3E80008343B8 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +113,7 @@
 		1FE42905284D3E80008343B8 /* toDoApp */ = {
 			isa = PBXGroup;
 			children = (
+				1FCF76C328527FE1009B696E /* Model */,
 				1F9CF9A2284E94A4004D9354 /* Utilities */,
 				1FE4291D284D3EE9008343B8 /* View */,
 				1FE4291C284D3ED9008343B8 /* Resources */,
@@ -230,6 +241,7 @@
 				1FE4290B284D3E80008343B8 /* ToDoListViewController.swift in Sources */,
 				1F9CF9A4284E94B1004D9354 /* Extensions.swift in Sources */,
 				1FE42907284D3E80008343B8 /* AppDelegate.swift in Sources */,
+				1FCF76C528527FEE009B696E /* ToDo.swift in Sources */,
 				1F9CF99F284E934E004D9354 /* Textfield.swift in Sources */,
 				1F9CF9A1284E9372004D9354 /* Button.swift in Sources */,
 				1F9CF99C284E9321004D9354 /* Label.swift in Sources */,
