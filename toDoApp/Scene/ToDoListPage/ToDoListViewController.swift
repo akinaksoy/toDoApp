@@ -9,6 +9,8 @@ import UIKit
 
 class ToDoListViewController: UIViewController {
     
+    var toDoList = toDoManager.shared.fetchData()
+    
     let toDoTableView : UITableView = {
        let table = UITableView()
         table.register(ToDoTableViewCell.self, forCellReuseIdentifier: ToDoTableViewCell.identifier)
@@ -49,6 +51,12 @@ class ToDoListViewController: UIViewController {
         super.viewDidLayoutSubviews()
         toDoTableView.frame = view.bounds
     }
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.toDoList = toDoManager.shared.fetchData()
+            self.toDoTableView.reloadData()
+        }
+    }
     @objc func goToCreateScenePage(){
         let vc = createToDoViewController()
         navigationController?.pushViewController(vc, animated: true)
@@ -59,12 +67,12 @@ class ToDoListViewController: UIViewController {
 
 extension ToDoListViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return toDoList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as! ToDoTableViewCell
-        cell.configure(icon: "checkmark.square", name: "Go to Shopping", time: "22.02.2021 - 14.30")
+        cell.configure(icon: "checkmark.square", name: toDoList[indexPath.row].title, time: "22.02.2021 - 14.30")
         return cell
     }
     
