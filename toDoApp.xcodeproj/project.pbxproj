@@ -19,6 +19,7 @@
 		1FCF76C82852822F009B696E /* toDoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF76C72852822F009B696E /* toDoManager.swift */; };
 		1FCF76CA28528CA7009B696E /* createToDoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF76C928528CA7009B696E /* createToDoViewModel.swift */; };
 		1FCF76CC28528EE2009B696E /* toDoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF76CB28528EE2009B696E /* toDoListViewModel.swift */; };
+		1FCF76CE2852928B009B696E /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCF76CD2852928B009B696E /* Enums.swift */; };
 		1FE42907284D3E80008343B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE42906284D3E80008343B8 /* AppDelegate.swift */; };
 		1FE42909284D3E80008343B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE42908284D3E80008343B8 /* SceneDelegate.swift */; };
 		1FE4290B284D3E80008343B8 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE4290A284D3E80008343B8 /* ToDoListViewController.swift */; };
@@ -38,6 +39,7 @@
 		1FCF76C72852822F009B696E /* toDoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toDoManager.swift; sourceTree = "<group>"; };
 		1FCF76C928528CA7009B696E /* createToDoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createToDoViewModel.swift; sourceTree = "<group>"; };
 		1FCF76CB28528EE2009B696E /* toDoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toDoListViewModel.swift; sourceTree = "<group>"; };
+		1FCF76CD2852928B009B696E /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		1FE42903284D3E80008343B8 /* toDoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = toDoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE42906284D3E80008343B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FE42908284D3E80008343B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				1F9CF9A3284E94B1004D9354 /* Extensions.swift */,
+				1FCF76CD2852928B009B696E /* Enums.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				1F9CF99F284E934E004D9354 /* Textfield.swift in Sources */,
 				1FCF76C82852822F009B696E /* toDoManager.swift in Sources */,
 				1FCF76CA28528CA7009B696E /* createToDoViewModel.swift in Sources */,
+				1FCF76CE2852928B009B696E /* Enums.swift in Sources */,
 				1F9CF9A1284E9372004D9354 /* Button.swift in Sources */,
 				1F9CF99C284E9321004D9354 /* Label.swift in Sources */,
 				1FE42909284D3E80008343B8 /* SceneDelegate.swift in Sources */,

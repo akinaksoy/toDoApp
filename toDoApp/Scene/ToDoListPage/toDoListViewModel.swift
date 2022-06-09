@@ -8,7 +8,7 @@
 import Foundation
 struct toDoListViewModel {
     static let shared = toDoListViewModel()
-    
+    let enums = Enums.checkBox.self
     func generateDateToString( dateValue : Date) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.YY - hh.mm"
@@ -16,8 +16,12 @@ struct toDoListViewModel {
     }
     func getCheckboxImage(checkStatus : Bool) -> String{
         var iconText = ""
-        if checkStatus {iconText = "checkmark.square" }
-        else {iconText = "square"}
+        switch checkStatus {
+        case true:
+            iconText = enums.checked.rawValue
+        case false:
+            iconText = enums.unChecked.rawValue
+        }
         return iconText
     }
 }
