@@ -9,6 +9,7 @@ import UIKit
 
 class ToDoTableViewCell: UITableViewCell {
 
+    static let identifier = "ToDoTableViewCell"
     
     @IBOutlet weak var toDoCheckbox: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

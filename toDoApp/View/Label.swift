@@ -12,7 +12,7 @@ struct Label {
     
     public let headerLabel : UILabel = {
        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 20)
+        label.font = .boldSystemFont(ofSize: 18)
         label.textColor = UIColor().setWhite1
         return label
     }()

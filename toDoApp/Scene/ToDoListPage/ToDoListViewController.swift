@@ -1,15 +1,19 @@
 //
 //  ViewController.swift
 //  toDoApp
-//
+//ş
 //  Created by Akın Aksoy on 5.06.2022.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    @IBOutlet weak var toDoTableView: UITableView!
+class ToDoListViewController: UIViewController {
+    
+    let toDoTableView : UITableView = {
+       let table = UITableView()
+        table.register(ToDoTableViewCell.self, forCellReuseIdentifier: ToDoTableViewCell.identifier)
+        return table
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +34,13 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController : UITableViewDelegate,UITableViewDataSource {
+extension ToDoListViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "toDoCell", for: indexPath) as! ToDoTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as! ToDoTableViewCell
         cell.TimeLabel.text = "22.02.2021 - 14.30"
         cell.titleLabel.text = "Go to Shopping"
         cell.toDoCheckbox.image = UIImage(systemName: "checkmark.square")

@@ -13,8 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+        let window = UIWindow(frame: UIScreen.main.bounds)
+                // Override point for customization after application launch.
+                let navVC = UINavigationController(rootViewController: ToDoListViewController())
+                            navVC.navigationBar.prefersLargeTitles = true
+                            navVC.viewControllers.first?.navigationItem.largeTitleDisplayMode = .always
+                            window.rootViewController = navVC
+                return true
     }
 
     // MARK: UISceneSession Lifecycle
