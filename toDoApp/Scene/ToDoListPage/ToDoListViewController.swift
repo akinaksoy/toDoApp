@@ -72,7 +72,10 @@ extension ToDoListViewController : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as! ToDoTableViewCell
-        cell.configure(icon: "checkmark.square", name: toDoList[indexPath.row].title, time: "22.02.2021 - 14.30")
+        let toDoItem = toDoList[indexPath.row]
+        let timeString = toDoListViewModel.shared.generateDateToString(dateValue: (toDoItem.date))
+        let iconName = toDoListViewModel.shared.getCheckboxImage(checkStatus: toDoItem.checkStatus)
+        cell.configure(icon: iconName, name: toDoList[indexPath.row].title, time: timeString)
         return cell
     }
     
