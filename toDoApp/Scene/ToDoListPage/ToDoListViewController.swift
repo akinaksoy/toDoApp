@@ -9,7 +9,7 @@ import UIKit
 
 class ToDoListViewController: UIViewController {
     
-    var toDoList = toDoManager.shared.fetchData()
+    var toDoList : [ToDo] = [ToDo]()
     
     let toDoTableView : UITableView = {
        let table = UITableView()
@@ -53,7 +53,7 @@ class ToDoListViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         DispatchQueue.main.async {
-            self.toDoList = toDoManager.shared.fetchData()
+            self.toDoList = toDoListViewModel.shared.getOrderedListbyDate()
             self.toDoTableView.reloadData()
         }
     }
@@ -78,7 +78,7 @@ extension ToDoListViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as! ToDoTableViewCell
         let toDoItem = toDoList[indexPath.row]
-        let timeString = toDoListViewModel.shared.generateDateToString(dateValue: (toDoItem.date))
+        let timeString = toDoItem.date.convertString
         let iconName = toDoListViewModel.shared.getCheckboxImage(checkStatus: toDoItem.checkStatus)
         cell.configure(icon: iconName, name: toDoList[indexPath.row].title, time: timeString)
         return cell

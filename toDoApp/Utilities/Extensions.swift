@@ -60,3 +60,10 @@ extension UIColor {
     }
 }
 
+extension Date {
+    var convertString : String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YY - hh.mm"
+        return dateFormatter.string(from: self)
+    }
+}

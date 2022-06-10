@@ -9,10 +9,10 @@ import Foundation
 struct toDoListViewModel {
     static let shared = toDoListViewModel()
     let enums = Enums.checkBox.self
-    func generateDateToString( dateValue : Date) -> String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YY - hh.mm"
-        return dateFormatter.string(from: dateValue)
+    
+    func getOrderedListbyDate() -> [ToDo] {
+        let toDoList = toDoManager.shared.fetchData()
+        return toDoList.sorted(by: { ($0.date) <= ($1.date)})
     }
     func getCheckboxImage(checkStatus : Bool) -> String{
         var iconText = ""
