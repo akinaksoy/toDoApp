@@ -14,6 +14,10 @@ struct toDoListViewModel {
         let toDoList = toDoManager.shared.fetchData()
         return toDoList.sorted(by: { ($0.date) <= ($1.date)})
     }
+    func removeDataForStorage(index : Int){
+        let toDoList = getOrderedListbyDate()
+        toDoManager.shared.editData(selectedIndex: index, toDoItem: toDoList)
+    }
     func getCheckboxImage(checkStatus : Bool) -> String{
         var iconText = ""
         switch checkStatus {

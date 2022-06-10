@@ -52,12 +52,9 @@ class ToDoListViewController: UIViewController {
         toDoTableView.frame = view.bounds
     }
     override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.async {
-            self.toDoList = toDoListViewModel.shared.getOrderedListbyDate()
-            self.toDoTableView.reloadData()
-        }
+        updateUI()
     }
-    @objc func goToCreateScenePage(){
+   @objc func goToCreateScenePage(){
         let vc = createToDoViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -66,7 +63,12 @@ class ToDoListViewController: UIViewController {
         vc.selectedToDoIndex = index
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+    func updateUI() {
+        DispatchQueue.main.async {
+            self.toDoList = toDoListViewModel.shared.getOrderedListbyDate()
+            self.toDoTableView.reloadData()
+        }
+    }
 
 }
 
@@ -97,7 +99,8 @@ extension ToDoListViewController : UITableViewDelegate,UITableViewDataSource {
         }
         editButton.backgroundColor = UIColor().setGold
         let deleteButton = UITableViewRowAction(style: .normal, title: "Delete") { rowAction, indexpath in
-            print("deleteClicked")
+            toDoListViewModel.shared.removeDataForStorage(index: indexPath.row)
+            self.updateUI()
         }
         deleteButton.backgroundColor = .red
         return [editButton,deleteButton]
