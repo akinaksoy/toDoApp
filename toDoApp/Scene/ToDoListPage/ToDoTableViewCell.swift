@@ -23,6 +23,7 @@ class ToDoTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        titleLabel.numberOfLines = 0
         contentView.backgroundColor = UIColor().setPurple1
         contentView.addSubview(checkBoxIcon)
         contentView.addSubview(titleLabel)
@@ -46,6 +47,7 @@ class ToDoTableViewCell: UITableViewCell {
         self.titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalTo(checkBoxIcon.snp_rightMargin).offset(10)
+            make.right.equalToSuperview()
         }
         self.timeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(2)
