@@ -8,6 +8,7 @@
 import Foundation
 
 struct ToDo : Codable{
+    var id : UUID
     var title : String = ""
     var description : String = ""
     var date = Date()

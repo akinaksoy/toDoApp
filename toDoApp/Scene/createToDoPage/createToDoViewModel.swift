@@ -9,7 +9,7 @@ import Foundation
 struct createToDoViewModel {
     static let shared = createToDoViewModel()
     func saveDataToStorage(title : String,description: String,date : Date){
-        let toDo = ToDo(title: title, description: description, date: date, checkStatus: false)
+        let toDo = ToDo(id: UUID(),title: title, description: description, date: date, checkStatus: false)
         var toDoList = toDoManager.shared.fetchData()
         
         toDoList.append(toDo)
