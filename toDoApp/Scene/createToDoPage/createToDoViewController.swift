@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 class createToDoViewController: UIViewController {
+    var selectedToDoIndex = -1
     let titleArea = UIView()
     let titleHeaderLabel = Label.init().descriptionLabel
     let titleTextfield = TextField.init().textfield
@@ -23,10 +24,17 @@ class createToDoViewController: UIViewController {
         guard let titleText = titleTextfield.text else { return }
         guard let descriptionText = descriptionTextfield.text else {return}
         let dateValue = datePicker.date
-        createToDoViewModel.shared.saveDataToStorage(title: titleText, description: descriptionText, date: dateValue )
+        if selectedToDoIndex == -1 {
+            createToDoViewModel.shared.saveDataToStorage(title: titleText, description: descriptionText, date: dateValue )
+        }else{
+            createToDoViewModel.shared.editDataForStorage(index: selectedToDoIndex, title: titleText, description: descriptionText, date: dateValue)
+        }
      }
     override func viewDidLoad() {
         super.viewDidLoad()
+        if selectedToDoIndex >= 0 {
+            configurePageForEdit(toDoItem: createToDoViewModel.shared.getDataForEdit(index: selectedToDoIndex))
+        }
         makeDesign()
     }
     
@@ -48,7 +56,11 @@ class createToDoViewController: UIViewController {
         view.addSubview(saveButton)
         makeConstraints()
     }
-    
+    func configurePageForEdit(toDoItem : ToDo) {
+        titleTextfield.text = toDoItem.title
+        datePicker.date = toDoItem.date
+        descriptionTextfield.text = toDoItem.description
+    }
     func makeConstraints(){
         
         titleArea.snp.makeConstraints { make in

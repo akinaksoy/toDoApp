@@ -61,6 +61,11 @@ class ToDoListViewController: UIViewController {
         let vc = createToDoViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
+    @objc func goToEditTaskPage(index : Int){
+        let vc = createToDoViewController()
+        vc.selectedToDoIndex = index
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
 
 }
@@ -83,6 +88,18 @@ extension ToDoListViewController : UITableViewDelegate,UITableViewDataSource {
         return 110
     }
     
-    
-    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let editButton = UITableViewRowAction(style: .normal, title: "Edit") { rowAction, indexpath in
+            self.goToEditTaskPage(index: indexPath.row)
+        }
+        editButton.backgroundColor = UIColor().setGold
+        let deleteButton = UITableViewRowAction(style: .normal, title: "Delete") { rowAction, indexpath in
+            print("deleteClicked")
+        }
+        deleteButton.backgroundColor = .red
+        return [editButton,deleteButton]
+    }
 }

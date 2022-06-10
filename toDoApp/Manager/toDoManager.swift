@@ -20,4 +20,10 @@ struct toDoManager {
         let data = toDoItem.map { try? JSONEncoder().encode($0) }
             UserDefaults.standard.set(data, forKey: Key)
     }
+    func editData(selectedIndex : Int,toDoItem: [ToDo]){
+        var toDoList = toDoItem
+        toDoList.remove(at: selectedIndex)
+        let data = toDoList.map { try? JSONEncoder().encode($0) }
+        UserDefaults.standard.set(data, forKey: Key)
+    }
 }
