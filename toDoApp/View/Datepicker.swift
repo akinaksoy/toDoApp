@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 struct Datepicker {
-    
-    let datePicker : UIDatePicker = {
+
+    let datePicker: UIDatePicker = {
         var datePicker = UIDatePicker()
         datePicker.backgroundColor = UIColor().setPink2
         datePicker.tintColor = UIColor().setGold
@@ -21,5 +21,5 @@ struct Datepicker {
         datePicker.layer.borderColor = UIColor().setGold.cgColor
         return datePicker
     }()
-    
+
 }

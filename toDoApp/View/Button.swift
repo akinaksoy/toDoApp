@@ -7,9 +7,9 @@
 
 import Foundation
 import UIKit
-struct Button{
-    
-    public let saveButton : UIButton = {
+struct Button {
+
+    public let saveButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor().setPurple1
         button.layer.borderWidth = 3
@@ -19,5 +19,5 @@ struct Button{
         button.setTitle("Save", for: .normal)
         return button
     }()
-    
+
 }

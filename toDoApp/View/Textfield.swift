@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 struct TextField {
-    
-    public let textfield : UITextField = {
-       let textfield = UITextField()
+
+    public let textfield: UITextField = {
+        let textfield = UITextField()
         textfield.backgroundColor = UIColor().setPink2
         textfield.textColor = UIColor().setWhite1
         textfield.textAlignment = .center
@@ -20,5 +20,5 @@ struct TextField {
         textfield.layer.borderColor = UIColor().setGold.cgColor
         return textfield
     }()
-    
+
 }

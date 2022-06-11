@@ -7,9 +7,10 @@
 
 import Foundation
 struct Enums {
-    
-        public enum checkBox : String {
-            case checked = "checkmark.square"
-            case unChecked = "square"
-        }
+
+    public enum checkBox: String {
+        case checked = "checkmark.square"
+        case unChecked = "square"
+
+    }
 }
