@@ -6,14 +6,14 @@
 //
 
 import Foundation
-struct createToDoViewModel {
-    static let shared = createToDoViewModel()
+struct CreateToDoViewModel {
+    static let shared = CreateToDoViewModel()
     func saveDataToStorage(title: String, description: String, date: Date) {
         let toDo = ToDo(title: title, description: description, date: date, checkStatus: false)
         var toDoList = [Any]().toDoListorderByDate
 
         toDoList.append(toDo)
-        toDoManager.shared.save(toDoItem: toDoList)
+        ToDoManager.shared.save(toDoItem: toDoList)
     }
     func getDataForEdit(index: Int) -> ToDo {
         let toDoList = [Any]().toDoListorderByDate
@@ -24,7 +24,7 @@ struct createToDoViewModel {
         var toDoList = [Any]().toDoListorderByDate
 
         toDoList.append(toDo)
-        toDoManager.shared.editData(selectedIndex: index, toDoItem: toDoList)
+        ToDoManager.shared.editData(selectedIndex: index, toDoItem: toDoList)
     }
 
 }

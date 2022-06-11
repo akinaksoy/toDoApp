@@ -31,7 +31,7 @@ class ToDoTableViewCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(timeLabel)
         contentView.addSubview(descriptionLabel)
-        DesignCell()
+        designCell()
     }
     required init?(coder: NSCoder) {
         fatalError()
@@ -41,7 +41,7 @@ class ToDoTableViewCell: UITableViewCell {
         super.layoutSubviews()
     }
     // MARK: ViewConfigure Functions
-    public func DesignCell() {
+    public func designCell() {
         timeLabel.textColor = UIColor().setGold
         self.checkBoxIcon.snp.makeConstraints { make in
             make.centerY.equalToSuperview()

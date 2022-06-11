@@ -7,7 +7,8 @@
 
 import UIKit
 import SnapKit
-class createToDoViewController: UIViewController {
+class CreateToDoViewController: UIViewController {
+    let viewModel = CreateToDoViewModel.shared
     // MARK: UIProperties
     var selectedToDoIndex = -1
     let titleArea = UIView()
@@ -30,10 +31,10 @@ class createToDoViewController: UIViewController {
         let textFieldStatuses = checkTextfieldsEmpty()
         if textFieldStatuses == [false, false] {
             if selectedToDoIndex == -1 {
-                createToDoViewModel.shared.saveDataToStorage(title: titleText, description: descriptionText, date: dateValue )
+                viewModel.saveDataToStorage(title: titleText, description: descriptionText, date: dateValue )
                 navigationController?.popViewController(animated: true)
             } else {
-                createToDoViewModel.shared.editDataForStorage(index: selectedToDoIndex, title: titleText, description: descriptionText, date: dateValue)
+                viewModel.editDataForStorage(index: selectedToDoIndex, title: titleText, description: descriptionText, date: dateValue)
                 navigationController?.popViewController(animated: true)
             }
         } else {
@@ -56,10 +57,10 @@ class createToDoViewController: UIViewController {
         titleTextfield.delegate = self
         descriptionTextfield.delegate = self
         configureNavigationBar()
-        title = "Create new ToDo Item"
+        title = "Create New ToDo Item"
         if selectedToDoIndex >= 0 {
             title = "Edit ToDo Item"
-            configurePageForEdit(toDoItem: createToDoViewModel.shared.getDataForEdit(index: selectedToDoIndex))
+            configurePageForEdit(toDoItem: viewModel.getDataForEdit(index: selectedToDoIndex))
         }
         makeDesign()
     }
@@ -74,12 +75,12 @@ class createToDoViewController: UIViewController {
     }
     func checkTextfieldsEmpty() -> [Bool] {
         var textfieldsIsEmptyList: Array = [Bool]()
-        if let titleText = titleTextfield.text, titleText.count > 0 {
+        if let titleText = titleTextfield.text, titleText.count >= 1 {
             textfieldsIsEmptyList.append(false)
         } else {
             textfieldsIsEmptyList.append(true)
         }
-        if let descriptionText = descriptionTextfield.text, descriptionText.count > 0 {
+        if let descriptionText = descriptionTextfield.text, descriptionText.count >= 1 {
             textfieldsIsEmptyList.append(false)
         } else {
             textfieldsIsEmptyList.append(true)
@@ -104,6 +105,7 @@ class createToDoViewController: UIViewController {
         view.addSubview(descriptionTextfield)
         view.addSubview(descriptionHeaderLabel)
         view.addSubview(saveButton)
+
         makeConstraints()
     }
 
@@ -152,7 +154,7 @@ class createToDoViewController: UIViewController {
         datePicker.snp.makeConstraints { make in
             make.centerY.equalTo(selectDateTimeArea)
             make.left.equalTo(titleTextfield)
-            make.width.equalTo(selectDateTimeArea).dividedBy(2).offset(5)
+            make.width.equalTo(selectDateTimeArea).dividedBy(2).offset(10)
             make.height.equalTo(selectDateTimeArea).dividedBy(2)
         }
         dateHeaderLabel.snp.makeConstraints { make in
@@ -184,7 +186,7 @@ class createToDoViewController: UIViewController {
     }
 }
 // MARK: - - Textfield Extension
-extension createToDoViewController: UITextFieldDelegate {
+extension CreateToDoViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         titleTextfield.endEditing(true)
         descriptionTextfield.endEditing(true)
@@ -208,7 +210,7 @@ extension createToDoViewController: UITextFieldDelegate {
             titleText.removeLast()
             titleTextfield.text = titleText
             saveButton.setDisabled()
-        } else if titleText.count <= 5 {
+        } else if titleText.count < 5 {
             titleWarningLabel.removeFromSuperview()
             updateWarningLabelforTitleTextfield()
             titleWarningLabel.text = "Title must be more than 5 character"
@@ -228,7 +230,7 @@ extension createToDoViewController: UITextFieldDelegate {
             descriptionText.removeLast()
             descriptionTextfield.text = descriptionText
             saveButton.setDisabled()
-        } else if descriptionText.count <= 5 {
+        } else if descriptionText.count < 5 {
             descriptionWarningLabel.removeFromSuperview()
             updateWarningLabelforDescriptionTextfield()
             descriptionWarningLabel.text = "Description must be more than 5 character"

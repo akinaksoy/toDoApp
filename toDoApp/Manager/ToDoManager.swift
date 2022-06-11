@@ -7,24 +7,24 @@
 
 import Foundation
 
-struct toDoManager {
-    let Key = "ToDoList"
-    static let shared = toDoManager()
+struct ToDoManager {
+    let toDoKey = "ToDoList"
+    static let shared = ToDoManager()
     func fetchData() -> [ToDo] {
-        guard let encodedData = UserDefaults.standard.array(forKey: Key) as? [Data] else {
+        guard let encodedData = UserDefaults.standard.array(forKey: toDoKey) as? [Data] else {
             return []
         }
         return encodedData.map { try! JSONDecoder().decode(ToDo.self, from: $0) }
     }
     func save(toDoItem: [ToDo]) {
         let data = toDoItem.map { try? JSONEncoder().encode($0) }
-        UserDefaults.standard.set(data, forKey: Key)
+        UserDefaults.standard.set(data, forKey: toDoKey)
     }
     func editData(selectedIndex: Int, toDoItem: [ToDo]) {
 
         var toDoList = toDoItem
         toDoList.remove(at: selectedIndex)
         let data = toDoList.map { try? JSONEncoder().encode($0) }
-        UserDefaults.standard.set(data, forKey: Key)
+        UserDefaults.standard.set(data, forKey: toDoKey)
     }
 }

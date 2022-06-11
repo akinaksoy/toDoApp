@@ -10,20 +10,20 @@ import UIKit
 class ToDoListViewController: UIViewController {
     // MARK: UIProperties
     var toDoList: [ToDo] = [ToDo]()
-
+    var viewModel = ToDoListViewModel.shared
     let toDoTableView: UITableView = {
         let table = UITableView()
         table.register(ToDoTableViewCell.self, forCellReuseIdentifier: ToDoTableViewCell.identifier)
         return table
     }()
     @objc func goToCreateScenePage() {
-        let vc = createToDoViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let destinationVC = CreateToDoViewController()
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
     @objc func goToEditTaskPage(index: Int) {
-        let vc = createToDoViewController()
-        vc.selectedToDoIndex = index
-        navigationController?.pushViewController(vc, animated: true)
+        let destinationVC = CreateToDoViewController()
+        destinationVC.selectedToDoIndex = index
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
     // MARK: Override Functions
     override func viewDidLoad() {
@@ -51,12 +51,13 @@ class ToDoListViewController: UIViewController {
             self.toDoList = [Any]().toDoListorderByDate
             self.toDoTableView.reloadData()
         }
+        let doneRatio = viewModel.getDoneRatio()
+        title = "My To-Do List(\(doneRatio))"
     }
     func configureNavigationBar() {
         view.backgroundColor = UIColor().setPurple1
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus" ), style: .done, target: self, action: #selector(goToCreateScenePage))
         navigationItem.rightBarButtonItem?.tintColor = UIColor().setWhite1
-        title = "My To-Do List"
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [.foregroundColor: UIColor().setGold]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor().setGold]
@@ -85,7 +86,7 @@ extension ToDoListViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as! ToDoTableViewCell
         let toDoItem = toDoList[indexPath.row]
         let timeString = toDoItem.date.convertString
-        let iconName = toDoListViewModel.shared.getCheckboxImage(checkStatus: toDoItem.checkStatus)
+        let iconName = viewModel.getCheckboxImage(checkStatus: toDoItem.checkStatus)
         let descriptionText = toDoItem.description
         cell.configure(icon: iconName, name: toDoList[indexPath.row].title, time: timeString, description: descriptionText)
         return cell
@@ -101,7 +102,7 @@ extension ToDoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        toDoListViewModel.shared.changeStatusOfToDoItem(index: indexPath.row)
+        viewModel.changeStatusOfToDoItem(index: indexPath.row)
         updateUI()
     }
 
@@ -114,7 +115,7 @@ extension ToDoListViewController: UITableViewDelegate, UITableViewDataSource {
         }
         editButton.backgroundColor = UIColor().setGold
         let deleteButton = UITableViewRowAction(style: .normal, title: "Delete") { _, _ in
-            toDoListViewModel.shared.removeDataForStorage(index: indexPath.row)
+            self.viewModel.removeDataForStorage(index: indexPath.row)
             self.updateUI()
         }
         deleteButton.backgroundColor = .red

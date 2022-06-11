@@ -69,7 +69,7 @@ extension Date {
 }
 extension Array {
     var toDoListorderByDate: [ToDo] {
-        let toDoList = toDoManager.shared.fetchData()
+        let toDoList = ToDoManager.shared.fetchData()
         return toDoList.sorted(by: { ($0.date) <= ($1.date)})
     }
 }

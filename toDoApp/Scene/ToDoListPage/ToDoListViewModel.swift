@@ -6,13 +6,13 @@
 //
 
 import Foundation
-struct toDoListViewModel {
-    static let shared = toDoListViewModel()
-    let enums = Enums.checkBox.self
+struct ToDoListViewModel {
+    static let shared = ToDoListViewModel()
+    let enums = Enums.CheckBox.self
 
     func removeDataForStorage(index: Int) {
         let toDoList = [Any]().toDoListorderByDate
-        toDoManager.shared.editData(selectedIndex: index, toDoItem: toDoList)
+        ToDoManager.shared.editData(selectedIndex: index, toDoItem: toDoList)
     }
     func getCheckboxImage(checkStatus: Bool) -> String {
         var iconText = ""
@@ -36,6 +36,16 @@ struct toDoListViewModel {
         }
 
         toDoList.append(toDo)
-        toDoManager.shared.editData(selectedIndex: index, toDoItem: toDoList)
+        ToDoManager.shared.editData(selectedIndex: index, toDoItem: toDoList)
+    }
+    func getDoneRatio() -> String {
+        let toDoList = [Any]().toDoListorderByDate
+        let toDoListElementCount = toDoList.count
+        var doneCount = 0
+        for item in toDoList where item.checkStatus == true {
+            doneCount += 1
+        }
+        let doneRatio = Int((Float(doneCount)/Float(toDoListElementCount))*100)
+        return String("%\(doneRatio)")
     }
 }
