@@ -30,8 +30,10 @@ class createToDoViewController: UIViewController {
         if textFieldStatuses == [false,false]{
             if selectedToDoIndex == -1 {
                 createToDoViewModel.shared.saveDataToStorage(title: titleText, description: descriptionText, date: dateValue )
+                navigationController?.popViewController(animated: true)
             }else{
                 createToDoViewModel.shared.editDataForStorage(index: selectedToDoIndex, title: titleText, description: descriptionText, date: dateValue)
+                navigationController?.popViewController(animated: true)
             }
         }else{
             // 0. index is title textfield / 1. index is description textfield
