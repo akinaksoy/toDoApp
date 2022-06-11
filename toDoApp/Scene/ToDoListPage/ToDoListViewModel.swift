@@ -45,7 +45,11 @@ struct ToDoListViewModel {
         for item in toDoList where item.checkStatus == true {
             doneCount += 1
         }
-        let doneRatio = Int((Float(doneCount)/Float(toDoListElementCount))*100)
-        return String("%\(doneRatio)")
+        if toDoListElementCount != 0 {
+            let doneRatio = Int((Float(doneCount)/Float(toDoListElementCount))*100)
+            return String("%\(doneRatio)")
+        } else {
+            return String("%0")
+        }
     }
 }
