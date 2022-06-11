@@ -95,6 +95,11 @@ extension ToDoListViewController : UITableViewDelegate,UITableViewDataSource {
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        toDoListViewModel.shared.changeStatusOfToDoItem(index: indexPath.row)
+        updateUI()
+    }
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }

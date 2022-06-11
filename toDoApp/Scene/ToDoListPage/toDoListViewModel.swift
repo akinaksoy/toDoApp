@@ -24,4 +24,18 @@ struct toDoListViewModel {
         }
         return iconText
     }
+    func changeStatusOfToDoItem (index : Int) {
+        var toDoList = Array<Any>().toDoListorderByDate
+        var toDo = toDoList[index]
+        
+        switch toDo.checkStatus {
+        case true:
+            toDo.checkStatus = false
+        case false:
+            toDo.checkStatus = true
+        }
+        
+        toDoList.append(toDo)
+        toDoManager.shared.editData(selectedIndex: index, toDoItem: toDoList)
+    }
 }
