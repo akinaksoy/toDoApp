@@ -201,15 +201,19 @@ extension createToDoViewController:UITextFieldDelegate{
     }
     func checkTitleTextfieldTextCount(){
         guard var titleText = titleTextfield.text else {return}
-        if titleText.count > 120{
+        if titleText.count > 60{
             titleWarningLabel.removeFromSuperview()
             updateWarningLabelforTitleTextfield()
-            titleWarningLabel.text = "Title must be less than 120 character"
+            titleWarningLabel.text = "Title must be less than 60 character"
             titleText.removeLast()
             titleTextfield.text = titleText
             saveButton.setDisabled()
-        }
-        else {
+        }else if titleText.count <= 5{
+            titleWarningLabel.removeFromSuperview()
+            updateWarningLabelforTitleTextfield()
+            titleWarningLabel.text = "Title must be more than 5 character"
+            saveButton.setDisabled()
+        }else {
             if checkTextfieldsEmpty() == [false,false]{
                 saveButton.setEnabled()
             }
@@ -218,11 +222,16 @@ extension createToDoViewController:UITextFieldDelegate{
     }
     func checkDescriptionTextfieldTextCount(){
         guard var descriptionText = descriptionTextfield.text else {return}
-        if descriptionText.count > 80{
+        if descriptionText.count > 120{
             updateWarningLabelforDescriptionTextfield()
-            descriptionWarningLabel.text = "Description must be less than 80 character"
+            descriptionWarningLabel.text = "Description must be less than 120 character"
             descriptionText.removeLast()
             descriptionTextfield.text = descriptionText
+            saveButton.setDisabled()
+        }else if descriptionText.count <= 5{
+            descriptionWarningLabel.removeFromSuperview()
+            updateWarningLabelforDescriptionTextfield()
+            descriptionWarningLabel.text = "Description must be more than 5 character"
             saveButton.setDisabled()
         }
         else {

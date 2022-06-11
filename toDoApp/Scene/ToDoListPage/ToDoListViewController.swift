@@ -92,10 +92,10 @@ extension ToDoListViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if toDoList[indexPath.row].title.count > 90 {
-            return 170
+        if toDoList[indexPath.row].description.count > 80 {
+            return 160
         }else{
-            return 110
+            return 120
         }
         
     }
