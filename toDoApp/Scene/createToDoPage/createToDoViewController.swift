@@ -53,12 +53,22 @@ class createToDoViewController: UIViewController {
         
         titleTextfield.delegate = self
         descriptionTextfield.delegate = self
+        configureNavigationBar()
+        title = "Create new ToDo Item"
         if selectedToDoIndex >= 0 {
+            title = "Edit ToDo Item"
             configurePageForEdit(toDoItem: createToDoViewModel.shared.getDataForEdit(index: selectedToDoIndex))
         }
         makeDesign()
     }
-    
+    func configureNavigationBar(){
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor().setGold]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor().setGold]
+        appearance.backgroundColor = UIColor().setPurple2
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+    }
     func makeDesign() {
         titleHeaderLabel.text = "Title"
         dateHeaderLabel.text = "Select Date"
