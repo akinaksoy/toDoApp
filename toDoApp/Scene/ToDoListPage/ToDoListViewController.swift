@@ -82,13 +82,14 @@ extension ToDoListViewController : UITableViewDelegate,UITableViewDataSource {
         let toDoItem = toDoList[indexPath.row]
         let timeString = toDoItem.date.convertString
         let iconName = toDoListViewModel.shared.getCheckboxImage(checkStatus: toDoItem.checkStatus)
-        cell.configure(icon: iconName, name: toDoList[indexPath.row].title, time: timeString)
+        let descriptionText = toDoItem.description
+        cell.configure(icon: iconName, name: toDoList[indexPath.row].title, time: timeString,description: descriptionText)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if toDoList[indexPath.row].title.count > 100 {
-            return 150
+        if toDoList[indexPath.row].title.count > 90 {
+            return 170
         }else{
             return 110
         }

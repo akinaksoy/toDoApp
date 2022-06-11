@@ -20,14 +20,17 @@ class ToDoTableViewCell: UITableViewCell {
     }()
     private let titleLabel = Label.init().headerLabel
     private let timeLabel = Label.init().headerLabel
+    private let descriptionLabel = Label.init().descriptionLabel
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         titleLabel.numberOfLines = 0
+        descriptionLabel.numberOfLines = 0
         contentView.backgroundColor = UIColor().setPurple1
         contentView.addSubview(checkBoxIcon)
         contentView.addSubview(titleLabel)
         contentView.addSubview(timeLabel)
+        contentView.addSubview(descriptionLabel)
         DesignCell()
     }
     required init?(coder: NSCoder) {
@@ -53,10 +56,16 @@ class ToDoTableViewCell: UITableViewCell {
             make.top.equalToSuperview().offset(2)
             make.right.equalToSuperview().offset(-2)
         }
+        self.descriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp_bottomMargin).offset(20)
+            make.left.equalTo(checkBoxIcon.snp_leftMargin)
+            make.right.equalToSuperview()
+        }
     }
-    public func configure(icon : String,name:String,time:String){
+    public func configure(icon : String,name:String,time:String,description:String){
         checkBoxIcon.image = UIImage(systemName: icon)
         titleLabel.text = name
         timeLabel.text = time
+        descriptionLabel.text = description
     }
 }
