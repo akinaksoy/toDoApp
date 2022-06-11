@@ -52,16 +52,16 @@ class ToDoTableViewCell: UITableViewCell {
         self.titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalTo(checkBoxIcon.snp_rightMargin).offset(10)
-            make.right.equalToSuperview()
+            make.right.equalToSuperview().offset(-5)
         }
         self.timeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(2)
-            make.right.equalToSuperview().offset(-2)
+            make.right.equalToSuperview().offset(-5)
         }
         self.descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp_bottomMargin).offset(20)
             make.left.equalTo(checkBoxIcon.snp_leftMargin)
-            make.right.equalToSuperview()
+            make.right.equalToSuperview().offset(-5)
         }
     }
     public func configure(icon : String,name:String,time:String,description:String){
