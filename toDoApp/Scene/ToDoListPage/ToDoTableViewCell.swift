@@ -8,7 +8,7 @@
 import UIKit
 
 class ToDoTableViewCell: UITableViewCell {
-
+    //MARK: UIProperties
     static let identifier = "ToDoTableViewCell"
     
     private let checkBoxIcon : UIImageView = {
@@ -21,7 +21,7 @@ class ToDoTableViewCell: UITableViewCell {
     private let titleLabel = Label.init().headerLabel
     private let timeLabel = Label.init().headerLabel
     private let descriptionLabel = Label.init().descriptionLabel
-
+    //MARK: Init Functions
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         titleLabel.numberOfLines = 0
@@ -36,9 +36,11 @@ class ToDoTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError()
     }
+    //MARK: Override Functions
     override func layoutSubviews() {
         super.layoutSubviews()
     }
+    //MARK: ViewConfigure Functions
     public func DesignCell(){
         timeLabel.textColor = UIColor().setGold
         self.checkBoxIcon.snp.makeConstraints { make in

@@ -8,7 +8,7 @@
 import UIKit
 
 class ToDoListViewController: UIViewController {
-    
+    //MARK: UIProperties
     var toDoList : [ToDo] = [ToDo]()
     
     let toDoTableView : UITableView = {
@@ -16,7 +16,16 @@ class ToDoListViewController: UIViewController {
         table.register(ToDoTableViewCell.self, forCellReuseIdentifier: ToDoTableViewCell.identifier)
         return table
     }()
-    
+    @objc func goToCreateScenePage(){
+        let vc = createToDoViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    @objc func goToEditTaskPage(index : Int){
+        let vc = createToDoViewController()
+        vc.selectedToDoIndex = index
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    //MARK: Override Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +33,24 @@ class ToDoListViewController: UIViewController {
         toDoTableView.dataSource = self
         configureNavigationBar()
         designTable()
+    }
+   
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        toDoTableView.frame = view.bounds
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        updateUI()
+    }
+    //MARK: Common Functions
+    func updateUI() {
+        DispatchQueue.main.async {
+            self.toDoList = Array<Any>().toDoListorderByDate
+            self.toDoTableView.reloadData()
+        }
     }
     func configureNavigationBar(){
         view.backgroundColor = UIColor().setPurple1
@@ -47,31 +74,8 @@ class ToDoListViewController: UIViewController {
             make.left.equalToSuperview()
         }
      }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        toDoTableView.frame = view.bounds
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        updateUI()
-    }
-   @objc func goToCreateScenePage(){
-        let vc = createToDoViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    @objc func goToEditTaskPage(index : Int){
-        let vc = createToDoViewController()
-        vc.selectedToDoIndex = index
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    func updateUI() {
-        DispatchQueue.main.async {
-            self.toDoList = Array<Any>().toDoListorderByDate
-            self.toDoTableView.reloadData()
-        }
-    }
-
 }
-
+//MARK: -- TableView Extension
 extension ToDoListViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return toDoList.count

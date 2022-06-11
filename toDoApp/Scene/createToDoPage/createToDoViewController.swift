@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 class createToDoViewController: UIViewController {
+    //MARK: UIProperties
     var selectedToDoIndex = -1
     let titleArea = UIView()
     let titleHeaderLabel = Label.init().descriptionLabel
@@ -48,6 +49,7 @@ class createToDoViewController: UIViewController {
         }
         
      }
+    //MARK: Override Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,6 +63,7 @@ class createToDoViewController: UIViewController {
         }
         makeDesign()
     }
+    //MARK: Common Functions
     func configureNavigationBar(){
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [.foregroundColor: UIColor().setGold]
@@ -69,6 +72,21 @@ class createToDoViewController: UIViewController {
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
     }
+    func checkTextfieldsEmpty() -> [Bool]{
+        var textfieldsIsEmptyList : Array = [Bool]()
+        if let titleText = titleTextfield.text, titleText.count > 0 {
+            textfieldsIsEmptyList.append(false)
+        }else {
+            textfieldsIsEmptyList.append(true)
+        }
+        if let descriptionText = descriptionTextfield.text, descriptionText.count > 0 {
+            textfieldsIsEmptyList.append(false)
+        }else {
+            textfieldsIsEmptyList.append(true)
+        }
+        return textfieldsIsEmptyList
+    }
+    //MARK: ViewConfigure Functions
     func makeDesign() {
         titleHeaderLabel.text = "Title"
         dateHeaderLabel.text = "Select Date"
@@ -88,20 +106,7 @@ class createToDoViewController: UIViewController {
         view.addSubview(saveButton)
         makeConstraints()
     }
-    func checkTextfieldsEmpty() -> [Bool]{
-        var textfieldsIsEmptyList : Array = [Bool]()
-        if let titleText = titleTextfield.text, titleText.count > 0 {
-            textfieldsIsEmptyList.append(false)
-        }else {
-            textfieldsIsEmptyList.append(true)
-        }
-        if let descriptionText = descriptionTextfield.text, descriptionText.count > 0 {
-            textfieldsIsEmptyList.append(false)
-        }else {
-            textfieldsIsEmptyList.append(true)
-        }
-        return textfieldsIsEmptyList
-    }
+    
     func updateWarningLabelforTitleTextfield(){
         view.addSubview(titleWarningLabel)
         titleWarningLabel.snp.makeConstraints { make in
@@ -178,7 +183,7 @@ class createToDoViewController: UIViewController {
         }
     }
 }
-
+//MARK: -- Textfield Extension
 extension createToDoViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         titleTextfield.endEditing(true)
