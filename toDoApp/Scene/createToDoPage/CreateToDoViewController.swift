@@ -194,15 +194,25 @@ extension CreateToDoViewController: UITextFieldDelegate {
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if titleTextfield.isEditing {
-            checkTitleTextfieldTextCount()
+            guard let oldTextString = titleTextfield.text else {
+                return true
+            }
+            let oldText = oldTextString as NSString
+            let newString = oldText.replacingCharacters(in: range, with: string)
+            checkTitleTextfieldTextCount(title : newString)
         }
         if descriptionTextfield.isEditing {
-            checkDescriptionTextfieldTextCount()
+            guard let oldTextString = descriptionTextfield.text else {
+                return true
+            }
+            let oldText = oldTextString as NSString
+            let newString = oldText.replacingCharacters(in: range, with: string)
+            checkDescriptionTextfieldTextCount(description: newString)
         }
         return true
     }
-    func checkTitleTextfieldTextCount() {
-        guard var titleText = titleTextfield.text else {return}
+    func checkTitleTextfieldTextCount(title : String) {
+        var titleText = title
         if titleText.count > 60 {
             titleWarningLabel.removeFromSuperview()
             updateWarningLabelforTitleTextfield()
@@ -222,8 +232,8 @@ extension CreateToDoViewController: UITextFieldDelegate {
             titleWarningLabel.removeFromSuperview()
         }
     }
-    func checkDescriptionTextfieldTextCount() {
-        guard var descriptionText = descriptionTextfield.text else {return}
+    func checkDescriptionTextfieldTextCount(description : String) {
+        var descriptionText = description
         if descriptionText.count > 120 {
             updateWarningLabelforDescriptionTextfield()
             descriptionWarningLabel.text = "Description must be less than 120 character"
