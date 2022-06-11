@@ -22,5 +22,10 @@ struct Label {
         label.textColor = UIColor().setWhite2
         return label
     }()
-    
+    public let warningLabel : UILabel = {
+       let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 12)
+        label.textColor = .red
+        return label
+    }()
 }
