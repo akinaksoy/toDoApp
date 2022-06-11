@@ -185,7 +185,7 @@ class CreateToDoViewController: UIViewController {
         }
     }
 }
-// MARK: - - Textfield Extension
+// MARK: - Textfield Extension
 extension CreateToDoViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         titleTextfield.endEditing(true)

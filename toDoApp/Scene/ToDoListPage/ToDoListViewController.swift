@@ -76,7 +76,7 @@ class ToDoListViewController: UIViewController {
         }
     }
 }
-// MARK: - - TableView Extension
+// MARK: - TableView Extension
 extension ToDoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return toDoList.count
