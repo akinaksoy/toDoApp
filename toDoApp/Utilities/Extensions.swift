@@ -73,3 +73,13 @@ extension Array {
         return toDoList.sorted(by: { ($0.date) <= ($1.date)})
     }
 }
+extension UIButton {
+    func setDisabled() {
+        self.isEnabled = false
+        self.alpha = 0.5
+    }
+    func setEnabled() {
+        self.isEnabled = true
+        self.alpha = 1
+     }
+}

@@ -20,7 +20,7 @@ class createToDoViewController: UIViewController {
     let descriptionTextfield = TextField.init().textfield
     let descriptionHeaderLabel = Label.init().descriptionLabel
     let descriptionWarningLabel = Label.init().warningLabel
-    let saveButton = Button.init().saveButton
+    var saveButton = Button.init().saveButton
     
     @objc func clickedOnSaveButton(){
         guard let titleText = titleTextfield.text else { return }
@@ -63,6 +63,7 @@ class createToDoViewController: UIViewController {
         titleHeaderLabel.text = "Title"
         dateHeaderLabel.text = "Select Date"
         descriptionHeaderLabel.text = "Description"
+        saveButton.setDisabled()
         saveButton.addTarget(self, action: #selector(clickedOnSaveButton), for: .touchUpInside)
         view.backgroundColor = UIColor().setPurple2
         view.addSubview(titleArea)
@@ -171,6 +172,7 @@ class createToDoViewController: UIViewController {
 extension createToDoViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         titleTextfield.endEditing(true)
+        descriptionTextfield.endEditing(true)
         return true
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -185,24 +187,33 @@ extension createToDoViewController:UITextFieldDelegate{
     func checkTitleTextfieldTextCount(){
         guard var titleText = titleTextfield.text else {return}
         if titleText.count > 120{
+            titleWarningLabel.removeFromSuperview()
             updateWarningLabelforTitleTextfield()
             titleWarningLabel.text = "Title must be less than 120 character"
             titleText.removeLast()
             titleTextfield.text = titleText
+            saveButton.setDisabled()
         }
         else {
+            if checkTextfieldsEmpty() == [false,false]{
+                saveButton.setEnabled()
+            }
             titleWarningLabel.removeFromSuperview()
         }
     }
     func checkDescriptionTextfieldTextCount(){
         guard var descriptionText = descriptionTextfield.text else {return}
         if descriptionText.count > 80{
-            
+            updateWarningLabelforDescriptionTextfield()
             descriptionWarningLabel.text = "Description must be less than 80 character"
             descriptionText.removeLast()
             descriptionTextfield.text = descriptionText
+            saveButton.setDisabled()
         }
         else {
+            if checkTextfieldsEmpty() == [false,false]{
+                saveButton.setEnabled()
+            }
             descriptionWarningLabel.removeFromSuperview()
         }
     }
