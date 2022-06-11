@@ -65,7 +65,7 @@ class ToDoListViewController: UIViewController {
     }
     func updateUI() {
         DispatchQueue.main.async {
-            self.toDoList = toDoListViewModel.shared.getOrderedListbyDate()
+            self.toDoList = Array<Any>().toDoListorderByDate
             self.toDoTableView.reloadData()
         }
     }

@@ -67,3 +67,9 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 }
+extension Array {
+    var toDoListorderByDate : [ToDo] {
+        let toDoList = toDoManager.shared.fetchData()
+        return toDoList.sorted(by: { ($0.date) <= ($1.date)})
+    }
+}

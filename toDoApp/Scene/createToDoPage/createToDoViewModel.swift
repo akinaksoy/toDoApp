@@ -10,24 +10,21 @@ struct createToDoViewModel {
     static let shared = createToDoViewModel()
     func saveDataToStorage(title : String,description: String,date : Date){
         let toDo = ToDo(id: UUID(),title: title, description: description, date: date, checkStatus: false)
-        var toDoList = orderListbyDate()
+        var toDoList = Array<Any>().toDoListorderByDate
         
         toDoList.append(toDo)
         toDoManager.shared.save(toDoItem: toDoList)
     }
     func getDataForEdit(index : Int) -> ToDo{
-        let toDoList = orderListbyDate()
+        let toDoList = Array<Any>().toDoListorderByDate
         return toDoList[index]
     }
     func editDataForStorage(index : Int,title : String,description: String,date : Date){
         let toDo = ToDo(id: UUID(),title: title, description: description, date: date, checkStatus: false)
-        var toDoList = orderListbyDate()
+        var toDoList = Array<Any>().toDoListorderByDate
         
         toDoList.append(toDo)
         toDoManager.shared.editData(selectedIndex: index, toDoItem: toDoList)
     }
-    func orderListbyDate() -> [ToDo] {
-        let toDoList = toDoManager.shared.fetchData()
-        return toDoList.sorted(by: { ($0.date) <= ($1.date)})
-    }
+    
 }

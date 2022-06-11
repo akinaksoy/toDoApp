@@ -10,12 +10,8 @@ struct toDoListViewModel {
     static let shared = toDoListViewModel()
     let enums = Enums.checkBox.self
     
-    func getOrderedListbyDate() -> [ToDo] {
-        let toDoList = toDoManager.shared.fetchData()
-        return toDoList.sorted(by: { ($0.date) <= ($1.date)})
-    }
     func removeDataForStorage(index : Int){
-        let toDoList = getOrderedListbyDate()
+        let toDoList = Array<Any>().toDoListorderByDate
         toDoManager.shared.editData(selectedIndex: index, toDoItem: toDoList)
     }
     func getCheckboxImage(checkStatus : Bool) -> String{
