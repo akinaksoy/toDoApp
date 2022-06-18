@@ -14,7 +14,9 @@ extension ToDoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as! ToDoTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ToDoTableViewCell.identifier, for: indexPath) as? ToDoTableViewCell else {
+            return UITableViewCell()
+        }
         let toDoItem = toDoList[indexPath.row]
         let timeString = toDoItem.date.convertString
         let iconName = viewModel.getCheckboxImage(checkStatus: toDoItem.checkStatus)

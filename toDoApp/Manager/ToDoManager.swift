@@ -11,10 +11,18 @@ struct ToDoManager {
     let toDoKey = "ToDoList"
     static let shared = ToDoManager()
     func fetchData() -> [ToDo] {
+        let toDoList : [ToDo] = [ToDo]()
         guard let encodedData = UserDefaults.standard.array(forKey: toDoKey) as? [Data] else {
             return []
         }
-        return encodedData.map { try! JSONDecoder().decode(ToDo.self, from: $0) }
+        return encodedData.map {
+            do {
+                let encoded = try JSONDecoder().decode(ToDo.self, from: $0)
+                return encoded
+            } catch {
+                return toDoList[0]
+            }
+         }
     }
     func save(toDoItem: [ToDo]) {
         let data = toDoItem.map { try? JSONEncoder().encode($0) }
