@@ -7,22 +7,24 @@
 
 import UIKit
 import SnapKit
+
+
 class CreateToDoViewController: UIViewController {
-    let viewModel = CreateToDoViewModel.shared
+    private let viewModel = CreateToDoViewModel.shared
     // MARK: UIProperties
-    var selectedToDoIndex = -1
-    let titleArea = UIView()
-    let titleHeaderLabel = Label.init().descriptionLabel
-    let titleTextfield = TextField.init().textfield
-    let titleWarningLabel = Label.init().warningLabel
-    let selectDateTimeArea = UIView()
-    let dateHeaderLabel = Label.init().descriptionLabel
-    let datePicker = Datepicker.init().datePicker
-    let descriptionArea = UIView()
-    let descriptionTextfield = TextField.init().textfield
-    let descriptionHeaderLabel = Label.init().descriptionLabel
-    let descriptionWarningLabel = Label.init().warningLabel
-    var saveButton = Button.init().saveButton
+    internal var selectedToDoIndex = -1
+    private let titleArea = UIView()
+    private let titleHeaderLabel = Label.init().descriptionLabel
+    internal let titleTextfield = TextField.init().textfield
+    internal let titleWarningLabel = Label.init().warningLabel
+    private let selectDateTimeArea = UIView()
+    private let dateHeaderLabel = Label.init().descriptionLabel
+    private let datePicker = Datepicker.init().datePicker
+    private let descriptionArea = UIView()
+    internal let descriptionTextfield = TextField.init().textfield
+    private let descriptionHeaderLabel = Label.init().descriptionLabel
+    internal let descriptionWarningLabel = Label.init().warningLabel
+    internal var saveButton = Button.init().saveButton
 
     @objc func clickedOnSaveButton() {
         guard let titleText = titleTextfield.text else { return }
@@ -57,23 +59,20 @@ class CreateToDoViewController: UIViewController {
         titleTextfield.delegate = self
         descriptionTextfield.delegate = self
         configureNavigationBar()
+        makeDesign()
+    }
+    // MARK: Common Functions
+    private func configureNavigationBar() {
+        let appearance = NavigationBar.init().setNavigationBar(textColor: UIColor().setGold, backgroundColor: UIColor().setPurple2)
         title = "Create New ToDo Item"
         if selectedToDoIndex >= 0 {
             title = "Edit ToDo Item"
             configurePageForEdit(toDoItem: viewModel.getDataForEdit(index: selectedToDoIndex))
         }
-        makeDesign()
-    }
-    // MARK: Common Functions
-    func configureNavigationBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.titleTextAttributes = [.foregroundColor: UIColor().setGold]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor().setGold]
-        appearance.backgroundColor = UIColor().setPurple2
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
     }
-    func checkTextfieldsEmpty() -> [Bool] {
+    internal func checkTextfieldsEmpty() -> [Bool] {
         var textfieldsIsEmptyList: Array = [Bool]()
         if let titleText = titleTextfield.text, titleText.count >= 1 {
             textfieldsIsEmptyList.append(false)
@@ -88,7 +87,7 @@ class CreateToDoViewController: UIViewController {
         return textfieldsIsEmptyList
     }
     // MARK: ViewConfigure Functions
-    func makeDesign() {
+    private func makeDesign() {
         titleHeaderLabel.text = "Title"
         dateHeaderLabel.text = "Select Date"
         descriptionHeaderLabel.text = "Description"
@@ -109,25 +108,25 @@ class CreateToDoViewController: UIViewController {
         makeConstraints()
     }
 
-    func updateWarningLabelforTitleTextfield() {
+    internal func updateWarningLabelforTitleTextfield() {
         view.addSubview(titleWarningLabel)
         titleWarningLabel.snp.makeConstraints { make in
             make.top.equalTo(titleTextfield.snp_bottomMargin).offset(7)
             make.right.equalTo(titleTextfield.snp_rightMargin).offset(-2)
         }
     }
-    func updateWarningLabelforDescriptionTextfield() {
+    internal func updateWarningLabelforDescriptionTextfield() {
         view.addSubview(descriptionWarningLabel)
         descriptionWarningLabel.snp.makeConstraints { make in
             make.top.equalTo(descriptionTextfield.snp_bottomMargin).offset(7)
             make.right.equalTo(descriptionTextfield.snp_rightMargin).offset(-2)
         }    }
-    func configurePageForEdit(toDoItem: ToDo) {
+    private func configurePageForEdit(toDoItem: ToDo) {
         titleTextfield.text = toDoItem.title
         datePicker.date = toDoItem.date
         descriptionTextfield.text = toDoItem.description
     }
-    func makeConstraints() {
+    private func makeConstraints() {
 
         titleArea.snp.makeConstraints { make in
             make.height.equalToSuperview().multipliedBy(0.10)
@@ -182,74 +181,6 @@ class CreateToDoViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().offset(-20)
             make.height.equalTo(50)
-        }
-    }
-}
-// MARK: - Textfield Extension
-extension CreateToDoViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        titleTextfield.endEditing(true)
-        descriptionTextfield.endEditing(true)
-        return true
-    }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if titleTextfield.isEditing {
-            guard let oldTextString = titleTextfield.text else {
-                return true
-            }
-            let oldText = oldTextString as NSString
-            let newString = oldText.replacingCharacters(in: range, with: string)
-            checkTitleTextfieldTextCount(title : newString)
-        }
-        if descriptionTextfield.isEditing {
-            guard let oldTextString = descriptionTextfield.text else {
-                return true
-            }
-            let oldText = oldTextString as NSString
-            let newString = oldText.replacingCharacters(in: range, with: string)
-            checkDescriptionTextfieldTextCount(description: newString)
-        }
-        return true
-    }
-    func checkTitleTextfieldTextCount(title : String) {
-        var titleText = title
-        if titleText.count > 60 {
-            titleWarningLabel.removeFromSuperview()
-            updateWarningLabelforTitleTextfield()
-            titleWarningLabel.text = "Title must be less than 60 character"
-            titleText.removeLast()
-            titleTextfield.text = titleText
-            saveButton.setDisabled()
-        } else if titleText.count < 5 {
-            titleWarningLabel.removeFromSuperview()
-            updateWarningLabelforTitleTextfield()
-            titleWarningLabel.text = "Title must be more than 5 character"
-            saveButton.setDisabled()
-        } else {
-            if checkTextfieldsEmpty() == [false, false] {
-                saveButton.setEnabled()
-            }
-            titleWarningLabel.removeFromSuperview()
-        }
-    }
-    func checkDescriptionTextfieldTextCount(description : String) {
-        var descriptionText = description
-        if descriptionText.count > 120 {
-            updateWarningLabelforDescriptionTextfield()
-            descriptionWarningLabel.text = "Description must be less than 120 character"
-            descriptionText.removeLast()
-            descriptionTextfield.text = descriptionText
-            saveButton.setDisabled()
-        } else if descriptionText.count < 5 {
-            descriptionWarningLabel.removeFromSuperview()
-            updateWarningLabelforDescriptionTextfield()
-            descriptionWarningLabel.text = "Description must be more than 5 character"
-            saveButton.setDisabled()
-        } else {
-            if checkTextfieldsEmpty() == [false, false] {
-                saveButton.setEnabled()
-            }
-            descriptionWarningLabel.removeFromSuperview()
         }
     }
 }

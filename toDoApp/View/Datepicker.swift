@@ -21,5 +21,4 @@ struct Datepicker {
         datePicker.layer.borderColor = UIColor().setGold.cgColor
         return datePicker
     }()
-
 }

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 struct TextField {
 
-    public let textfield: UITextField = {
+    public var textfield: UITextField = {
         let textfield = UITextField()
         textfield.backgroundColor = UIColor().setPink2
         textfield.textColor = UIColor().setWhite1
