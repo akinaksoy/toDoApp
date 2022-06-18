@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 
-
 class CreateToDoViewController: UIViewController {
     private let viewModel = CreateToDoViewModel.shared
     // MARK: UIProperties
